@@ -82,7 +82,7 @@ export default function LeadDisplayComponent({
                                             <FontAwesomeIcon icon={faEnvelope} />
                                         </a>
                                     )}
-                                    {lead.field_data.some(field => field.name.toLowerC  ase() === 'phone') && (
+                                    {lead.field_data.some(field => field.name.toLowerCase() === 'phone') && (
                                         <a
                                             href={`tel:${lead.field_data.find(field => field.name.toLowerCase() === 'phone')?.values[0]
                                                 }`}
