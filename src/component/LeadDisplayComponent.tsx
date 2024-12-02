@@ -1,16 +1,16 @@
 "use client"
-import { useState } from "react";
+import {useState} from "react";
 import UserFormComponent from "@/component/UserFormComponent";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faUserPlus, faEnvelope, faPhone} from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
-import './lead.css'
+import './Lead.css'
 
 export default function LeadDisplayComponent({
-    leads,
-    formID,
-    admin
-}: {
+                                                 leads,
+                                                 formID,
+                                                 admin
+                                             }: {
     leads: { data: any[] };
     formID: string;
     admin?: boolean;
@@ -25,13 +25,15 @@ export default function LeadDisplayComponent({
             {/* Sidenavbar */}
             <div>
                 <h1 className="font-bold text-xl">
-                    <Link className='font-bold text-xl underline' href={'/admin/dashboard'}>Pages {' >'}</Link><Link href={'/admin/dashboard'} className='font-bold text-xl underline'> Forms {' >'}</Link> Form ID:{formID}
+                    <Link className='font-bold text-xl underline' href={'/admin/dashboard'}>Pages {' >'}</Link><Link
+                    href={'/admin/dashboard'} className='font-bold text-xl underline'> Forms {' >'}</Link> Form
+                    ID:{formID}
                 </h1>
 
                 {/* Add + Team Member button to open the modal */}
                 {admin && (
                     <button onClick={handleOpenModal} className="add-team-button">
-                        <FontAwesomeIcon icon={faUserPlus} className="icon-left ic" />
+                        <FontAwesomeIcon icon={faUserPlus} className="icon-left ic"/>
                         Add Team Member
                     </button>
                 )}
@@ -41,14 +43,18 @@ export default function LeadDisplayComponent({
                     <div className="modal-backdrop">
                         <div className="modal-content">
                             <button onClick={handleCloseModal} className="close-button">X</button>
-                            <UserFormComponent formID={formID} />
+                            <UserFormComponent formID={formID}/>
                         </div>
                     </div>
                 )}
 
                 <h1 className="leads-header">Leads:</h1>
                 <div className="leads-list">
-                    {leads.data.map((lead: { created_time: string; id: string; field_data: { name: string; values: string[] }[] }) => (
+                    {leads.data.map((lead: {
+                        created_time: string;
+                        id: string;
+                        field_data: { name: string; values: string[] }[]
+                    }) => (
                         <div key={lead.id} className="lead-item">
                             <p className="lead-id">
                                 <strong>Lead ID:</strong> {lead.id}
@@ -76,19 +82,19 @@ export default function LeadDisplayComponent({
                                     {lead.field_data.some(field => field.name.toLowerCase() === 'email') && (
                                         <a
                                             href={`mailto:${lead.field_data.find(field => field.name.toLowerCase() === 'email')?.values[0]
-                                                }`}
+                                            }`}
                                             className="icon"
                                         >
-                                            <FontAwesomeIcon icon={faEnvelope} />
+                                            <FontAwesomeIcon icon={faEnvelope}/>
                                         </a>
                                     )}
                                     {lead.field_data.some(field => field.name.toLowerCase() === 'phone') && (
                                         <a
                                             href={`tel:${lead.field_data.find(field => field.name.toLowerCase() === 'phone')?.values[0]
-                                                }`}
+                                            }`}
                                             className="icon"
                                         >
-                                            <FontAwesomeIcon icon={faPhone} />
+                                            <FontAwesomeIcon icon={faPhone}/>
                                         </a>
                                     )}
 
