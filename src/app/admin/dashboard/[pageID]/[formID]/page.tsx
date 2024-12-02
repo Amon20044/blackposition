@@ -1,6 +1,7 @@
 import {getTokenFromDB} from "@/functions/getTokenFromDB";
 import getLeads from "@/functions/getLeads";
 import LeadDisplayComponent from "@/component/LeadDisplayComponent";
+import CSVDownload from "@/component/CSVDownload";
 
 export default async function Form({params}: {
     params: {
@@ -19,6 +20,7 @@ export default async function Form({params}: {
     return (
         <div className="">
             <LeadDisplayComponent leads={leads} formID={formID} admin={true}/>
+            <CSVDownload leads={leads}/>
         </div>
     )
 }
