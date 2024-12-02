@@ -12,16 +12,14 @@ export default async function Dashboard() {
         <div className="dashboard-container">
             {/* Main Content */}
             <main className="content">
-                <header>
-                    <h1 className='font-bold text-xl'>Pages</h1>
+                <header className=" w-screen">
+                    <h1 className='font-bold text-xl text-center'>Pages</h1>
                 </header>
 
                 <div className="page-list">
                     <div className="page-list-header">
                         <span>Title</span>
                         <span>Client</span>
-                        <span>Shared</span>
-                        <span>Not Shared</span>
                     </div>
                     {pages.data.map((page: {
                         access_token: string,
@@ -35,8 +33,6 @@ export default async function Dashboard() {
                             <Link href={`${process.env.HOST}/admin/dashboard/${page.id}`}>
                                 <span>{page.name}</span>
                             </Link>
-                            <span>-</span>
-                            <span>-</span>
                             <span>-</span>
                         </div>
                     ))}

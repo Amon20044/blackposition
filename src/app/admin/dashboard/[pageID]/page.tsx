@@ -19,8 +19,8 @@ export default async function Page({params}: { params: { pageID: string } }) {
             {/* Main Content */}
             <div className="contentt">
                 <header>
-                    <Link className='font-bold text-xl' href={'/admin/dashboard'}>Pages {' –'}</Link><h1
-                    className='font-bold text-xl'> {`>`} Forms</h1>
+                    <Link className='font-bold text-xl underline p-2 py-0 rounded-lg' href={'/admin/dashboard'}>Pages {' >'}</Link><h1
+                    className='font-bold text-xl'>Forms</h1>
 
                 </header>
 

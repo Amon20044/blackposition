@@ -1,5 +1,7 @@
 "use client"
-
+import './button.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 interface FieldData {
     name: string;
     values: string[];
@@ -93,10 +95,8 @@ export default function CSVDownload({leads}: {
     console.log(csv)
     return (
         <>
-            <h1>Yea</h1>
-            <button onClick={(e) => {
-                downloadCsv(leads.data, 'user_data.csv');
-            }}>
+            <button className="download-button" onClick={() => downloadCsv(leads.data, 'user_data.csv')}>
+                <FontAwesomeIcon icon={faDownload} className="icon-left ic" />
                 Download CSV
             </button>
         </>
