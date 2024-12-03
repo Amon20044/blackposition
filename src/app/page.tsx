@@ -8,7 +8,7 @@ export default function Login() {
   return (
       <div className="flex flex-row max-[750px]:flex-col bg-black w-screen">
         <Logo/>
-        <div className="w-[50vw] max-[750px]:w-screen space-y-8 h-screen form bg-white ">
+        <div className="w-[50%] max-[750px]:w-screen space-y-8 h-screen form bg-white ">
 
           <div className="text-5xl max-[1030px]:text-4xl">Login to Leads Portal</div>
           <div className="w-[90%] h-[1px] bg-slate-200"></div>

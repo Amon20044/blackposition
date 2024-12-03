@@ -1,7 +1,7 @@
 import getPageTokens from "@/functions/getPageTokens";
 import {getTokenFromDB} from "@/functions/getTokenFromDB";
 import Link from "next/link";
-import './admin.css'
+
 
 
 export default async function Dashboard() {

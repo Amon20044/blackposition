@@ -3,7 +3,6 @@ import getLeads from "@/functions/getLeads";
 import LeadDisplayComponent from "@/component/LeadDisplayComponent";
 import CSVDownload from "@/component/CSVDownload";
 import "./csvButton.css"
-import "./Lead.css"
 
 export default async function Form({ params }: {
     params: {

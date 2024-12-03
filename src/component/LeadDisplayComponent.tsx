@@ -4,7 +4,12 @@ import UserFormComponent from "@/component/UserFormComponent";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUserPlus, faEnvelope, faPhone} from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
+<<<<<<< Updated upstream
 import './Lead.css'
+=======
+import { useRouter } from "next/navigation";
+
+>>>>>>> Stashed changes
 
 export default function LeadDisplayComponent({
                                                  leads,
@@ -16,6 +21,8 @@ export default function LeadDisplayComponent({
     admin?: boolean;
 }) {
     const [showModal, setShowModal] = useState(false);
+    const router = useRouter(); // Hook for navigation
+
 
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
@@ -24,11 +31,22 @@ export default function LeadDisplayComponent({
         <div className="lead-display-container">
             {/* Sidenavbar */}
             <div>
+<<<<<<< Updated upstream
                 <h1 className="font-bold text-xl">
                     <Link className='font-bold text-xl underline' href={'/admin/dashboard'}>Pages {' >'}</Link><Link
                     href={'/admin/dashboard'} className='font-bold text-xl underline'> Forms {' >'}</Link> Form
                     ID:{formID}
                 </h1>
+=======
+                <div className="header-row">
+                    <button onClick={() => router.back()} className="back-button">
+                        ← Back
+                    </button>
+                    <h1 className="form-id-title">
+                        Form ID: {formID}
+                    </h1>
+                </div>
+>>>>>>> Stashed changes
 
                 {/* Add + Team Member button to open the modal */}
                 {admin && (
