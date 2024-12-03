@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { userTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import Link from "next/link";
+import "./cust.css"
 
 export default async function CustomerDashboard() {
     const payload = await auth();
@@ -17,8 +18,11 @@ export default async function CustomerDashboard() {
                 Your Forms
             </div>
             <div className="forms-list">
-                {forms.map(form => (
+                {forms.map((form, index) => (
                     <div key={form.formID} className="form-item">
+                        <div>
+                            Sr. No: {index + 1}  {/* Displaying serial number */}
+                        </div>
                         <Link href={`${process.env.HOST}/customer/dashboard/${form.formID}`}>
                             {form.formID}
                         </Link>

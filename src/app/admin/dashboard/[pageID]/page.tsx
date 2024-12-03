@@ -2,7 +2,7 @@ import getForms from "@/functions/getForms";
 import getPageTokens from "@/functions/getPageTokens";
 import {getTokenFromDB} from "@/functions/getTokenFromDB";
 import Link from "next/link";
-
+import "./form.css";
 
 export default async function Page({ params }: { params: { pageID: string } }) {
     const { pageID } = params; // Extract pageID from params
@@ -22,6 +22,7 @@ export default async function Page({ params }: { params: { pageID: string } }) {
                         ← Back
                     </a>
                     <h1 className="font-bold text-xl">Forms</h1>
+                    <h1 className="font-bold text-xl"></h1>
                 </header>
 
                 <div className="page-list">

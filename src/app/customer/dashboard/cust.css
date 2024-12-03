@@ -1,0 +1,76 @@
+/* Main Container Styling */
+.customer-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh; /* Full-page height */
+}
+
+/* Header Styling (optional if needed later) */
+.customer-dashboard-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Forms List Styling */
+.forms-list {
+    width: 100%;
+    max-width: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form items */
+}
+
+/* Individual Form Item Styling */
+.form-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.form-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Link Styling */
+.form-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    transition: color 0.2s;
+}
+
+.form-item a:hover {
+    color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .customer-dashboard-container {
+        padding: 10px;
+    }
+
+    .forms-list {
+        gap: 10px;
+    }
+
+    .form-item {
+        padding: 10px;
+    }
+
+    .form-item a {
+        font-size: 16px;
+    }
+}

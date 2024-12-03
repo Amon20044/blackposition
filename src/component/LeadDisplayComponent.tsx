@@ -1,28 +1,23 @@
-"use client"
-import {useState} from "react";
-import UserFormComponent from "@/component/UserFormComponent";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faUserPlus, faEnvelope, faPhone} from '@fortawesome/free-solid-svg-icons';
-import Link from "next/link";
-<<<<<<< Updated upstream
-import './Lead.css'
-=======
+"use client";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-
->>>>>>> Stashed changes
+import UserFormComponent from "@/component/UserFormComponent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import "./lead.css";
 
 export default function LeadDisplayComponent({
-                                                 leads,
-                                                 formID,
-                                                 admin
-                                             }: {
+    leads,
+    formID,
+    admin,
+}: {
     leads: { data: any[] };
     formID: string;
     admin?: boolean;
 }) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter(); // Hook for navigation
-
 
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
@@ -31,27 +26,19 @@ export default function LeadDisplayComponent({
         <div className="lead-display-container">
             {/* Sidenavbar */}
             <div>
-<<<<<<< Updated upstream
+                {/* Back Button */}
+                <button onClick={() => router.back()} className="back-button">
+                    ← Back
+                </button>
+
                 <h1 className="font-bold text-xl">
-                    <Link className='font-bold text-xl underline' href={'/admin/dashboard'}>Pages {' >'}</Link><Link
-                    href={'/admin/dashboard'} className='font-bold text-xl underline'> Forms {' >'}</Link> Form
-                    ID:{formID}
+                    Form ID: {formID}
                 </h1>
-=======
-                <div className="header-row">
-                    <button onClick={() => router.back()} className="back-button">
-                        ← Back
-                    </button>
-                    <h1 className="form-id-title">
-                        Form ID: {formID}
-                    </h1>
-                </div>
->>>>>>> Stashed changes
 
                 {/* Add + Team Member button to open the modal */}
                 {admin && (
                     <button onClick={handleOpenModal} className="add-team-button">
-                        <FontAwesomeIcon icon={faUserPlus} className="icon-left ic"/>
+                        <FontAwesomeIcon icon={faUserPlus} className="icon-left ic" />
                         Add Team Member
                     </button>
                 )}
@@ -61,18 +48,14 @@ export default function LeadDisplayComponent({
                     <div className="modal-backdrop">
                         <div className="modal-content">
                             <button onClick={handleCloseModal} className="close-button">X</button>
-                            <UserFormComponent formID={formID}/>
+                            <UserFormComponent formID={formID} />
                         </div>
                     </div>
                 )}
 
                 <h1 className="leads-header">Leads:</h1>
                 <div className="leads-list">
-                    {leads.data.map((lead: {
-                        created_time: string;
-                        id: string;
-                        field_data: { name: string; values: string[] }[]
-                    }) => (
+                    {leads.data.map((lead: { created_time: string; id: string; field_data: { name: string; values: string[] }[] }) => (
                         <div key={lead.id} className="lead-item">
                             <p className="lead-id">
                                 <strong>Lead ID:</strong> {lead.id}
@@ -82,11 +65,11 @@ export default function LeadDisplayComponent({
                                     {lead.field_data.map((field: { name: string; values: string[] }) => (
                                         <div key={field.name} className="field-item">
                                             <p className="field-name">{field.name}:</p>
-                                            {field.name.toLowerCase() === 'email' ? (
+                                            {field.name.toLowerCase() === "email" ? (
                                                 <a href={`mailto:${field.values[0]}`} className="field-values">
                                                     {field.values[0]}
                                                 </a>
-                                            ) : field.name.toLowerCase() === 'phone' ? (
+                                            ) : field.name.toLowerCase() === "phone" ? (
                                                 <a href={`tel:${field.values[0]}`} className="field-values">
                                                     {field.values[0]}
                                                 </a>
@@ -97,31 +80,31 @@ export default function LeadDisplayComponent({
                                     ))}
                                 </div>
                                 <div className="lead-icons">
-                                    {lead.field_data.some(field => field.name.toLowerCase() === 'email') && (
+                                    {lead.field_data.some(field => field.name.toLowerCase() === "email") && (
                                         <a
-                                            href={`mailto:${lead.field_data.find(field => field.name.toLowerCase() === 'email')?.values[0]
+                                            href={`mailto:${
+                                                lead.field_data.find(field => field.name.toLowerCase() === "email")?.values[0]
                                             }`}
                                             className="icon"
                                         >
-                                            <FontAwesomeIcon icon={faEnvelope}/>
+                                            <FontAwesomeIcon icon={faEnvelope} />
                                         </a>
                                     )}
-                                    {lead.field_data.some(field => field.name.toLowerCase() === 'phone') && (
+                                    {lead.field_data.some(field => field.name.toLowerCase() === "phone") && (
                                         <a
-                                            href={`tel:${lead.field_data.find(field => field.name.toLowerCase() === 'phone')?.values[0]
+                                            href={`tel:${
+                                                lead.field_data.find(field => field.name.toLowerCase() === "phone")?.values[0]
                                             }`}
                                             className="icon"
                                         >
-                                            <FontAwesomeIcon icon={faPhone}/>
+                                            <FontAwesomeIcon icon={faPhone} />
                                         </a>
                                     )}
-
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
-
             </div>
         </div>
     );

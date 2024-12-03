@@ -1,8 +1,7 @@
 import getPageTokens from "@/functions/getPageTokens";
 import {getTokenFromDB} from "@/functions/getTokenFromDB";
 import Link from "next/link";
-
-
+import './admin.css'
 
 export default async function Dashboard() {
     const accessToken = await getTokenFromDB();
@@ -12,8 +11,8 @@ export default async function Dashboard() {
         <div className="dashboard-container">
             {/* Main Content */}
             <main className="content">
-                <header className=" w-screen">
-                    <h1 className='font-bold text-xl text-center'>Pages</h1>
+                <header className="">
+                    <h1 className='font-bold text-center text-xl '>Pages</h1>
                 </header>
 
                 <div className="page-list">
