@@ -113,3 +113,13 @@ label {
         width: 100vw;
     }
 }
+
+.logo img {
+    width: 200px; /* Default width */
+}
+
+@media (max-width: 750px) {
+    .logo img {
+        width: 48px; /* Adjust for smaller screens */
+    }
+}
