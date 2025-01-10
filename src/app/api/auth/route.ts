@@ -20,8 +20,8 @@ export async function GET(req: NextRequest) {
     const longAccessToken = await getLongLivedAccessToken(shortAccessToken)
 
     const me = await getMe(longAccessToken.access_token)
+    console.log("YEAA", me.email, longAccessToken)
     if (me.email !== process.env.ADMIN_EMAIL) {
-        console.log(me.email)
         return NextResponse.redirect(`${process.env.HOST}/?error=NOT_ADMIN`)
     } else {
         const token = await db.update(configTable).set({value: longAccessToken.access_token}).where(eq(configTable.key, "ACCESS_TOKEN"))

@@ -1,16 +1,15 @@
 import getForms from "@/functions/getForms";
-import getPageTokens from "@/functions/getPageTokens";
 import {getTokenFromDB} from "@/functions/getTokenFromDB";
 import Link from "next/link";
 import "./form.css";
+import CSVDownload from "@/component/CSVDownload";
+import LeadDisplayComponent from "@/component/LeadDisplayComponent";
 
-export default async function Page({ params }: { params: { pageID: string } }) {
-    const { pageID } = params; // Extract pageID from params
+export default async function Page({params}: { params: { pageID: string } }) {
+    const {pageID} = params; // Extract pageID from params
     const token = await getTokenFromDB();
-
-    const page = await getPageTokens(token);
-    const pageAccessToken = page.data.find((page: { id: string }) => page.id === pageID).access_token;
-    const forms = await getForms(pageAccessToken);
+    const leads = await getForms(token, params.pageID);
+    console.log(leads)
 
     return (
         <div className="dashboard-container">
@@ -31,15 +30,14 @@ export default async function Page({ params }: { params: { pageID: string } }) {
                         <span>Locale</span>
                         <span>Status</span>
                     </div>
-                    {forms.data.map((form: { id: string, locale: string, name: string, status: string }) => (
-                        <div key={form.id} className="page-item">
-                            <Link href={`${process.env.HOST}/admin/dashboard/${pageID}/${form.id}`}>
-                                <span>{form.name}</span>
-                            </Link>
-                            <span>{form.locale}</span>
-                            <span>{form.status}</span>
+                    <div className="">
+                        <div className="CSVbutton">
+                            <div className="bu">
+                                <CSVDownload leads={leads}/>
+                            </div>
                         </div>
-                    ))}
+                        <LeadDisplayComponent leads={leads} formID={pageID} admin={true}/>
+                    </div>
                 </div>
             </div>
         </div>
