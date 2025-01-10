@@ -1,23 +1,26 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import {useState} from "react";
+import {useRouter} from "next/navigation";
 import UserFormComponent from "@/component/UserFormComponent";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUserPlus, faEnvelope, faPhone} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import "./lead.css";
 
 export default function LeadDisplayComponent({
-    leads,
-    formID,
-    admin,
-}: {
+                                                 leads,
+                                                 formID,
+                                                 ad,
+                                                 admin,
+                                             }: {
     leads: { data: any[] };
     formID: string;
+    ad: string
     admin?: boolean;
 }) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter(); // Hook for navigation
+    console.log(ad)
 
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
@@ -38,7 +41,7 @@ export default function LeadDisplayComponent({
                 {/* Add + Team Member button to open the modal */}
                 {admin && (
                     <button onClick={handleOpenModal} className="add-team-button">
-                        <FontAwesomeIcon icon={faUserPlus} className="icon-left ic" />
+                        <FontAwesomeIcon icon={faUserPlus} className="icon-left ic"/>
                         Add Team Member
                     </button>
                 )}
@@ -48,14 +51,18 @@ export default function LeadDisplayComponent({
                     <div className="modal-backdrop">
                         <div className="modal-content">
                             <button onClick={handleCloseModal} className="close-button">X</button>
-                            <UserFormComponent formID={formID} />
+                            <UserFormComponent formID={formID}/>
                         </div>
                     </div>
                 )}
 
                 <h1 className="leads-header">Leads:</h1>
                 <div className="leads-list">
-                    {leads.data.map((lead: { created_time: string; id: string; field_data: { name: string; values: string[] }[] }) => (
+                    {leads.data.map((lead: {
+                        created_time: string;
+                        id: string;
+                        field_data: { name: string; values: string[] }[]
+                    }) => (
                         <div key={lead.id} className="lead-item">
                             <p className="lead-id">
                                 <strong>Lead ID:</strong> {lead.id}
@@ -87,7 +94,7 @@ export default function LeadDisplayComponent({
                                             }`}
                                             className="icon"
                                         >
-                                            <FontAwesomeIcon icon={faEnvelope} />
+                                            <FontAwesomeIcon icon={faEnvelope}/>
                                         </a>
                                     )}
                                     {lead.field_data.some(field => field.name.toLowerCase() === "phone") && (
@@ -97,7 +104,7 @@ export default function LeadDisplayComponent({
                                             }`}
                                             className="icon"
                                         >
-                                            <FontAwesomeIcon icon={faPhone} />
+                                            <FontAwesomeIcon icon={faPhone}/>
                                         </a>
                                     )}
                                 </div>
