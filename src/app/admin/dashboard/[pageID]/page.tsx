@@ -55,7 +55,7 @@ export default async function Page({params}: { params: { pageID: string } }) {
                                 <CSVDownload leads={leads}/>
                             </div>
                         </div>
-                        <LeadDisplayComponent ad={adName} leads={leads} formID={pageID} admin={true}/>
+                        <LeadDisplayComponent leads={leads} formID={pageID} admin={true}/>
                     </div>
                 </div>
             </div>

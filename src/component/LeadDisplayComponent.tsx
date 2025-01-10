@@ -10,17 +10,14 @@ import "./lead.css";
 export default function LeadDisplayComponent({
                                                  leads,
                                                  formID,
-                                                 ad,
                                                  admin,
                                              }: {
     leads: { data: any[] };
     formID: string;
-    ad: string
     admin?: boolean;
 }) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter(); // Hook for navigation
-    console.log(ad)
 
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
