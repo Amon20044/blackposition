@@ -14,7 +14,7 @@ export default function LoginComponent() {
 
     const router = useRouter()
     return (
-        <div className={`bg-black shadow text-white rounded-xl p-8 w-auto ${window.innerWidth <= 1100 ? .8 : 1}`}>
+        <div className={`bg-black shadow text-white rounded-xl p-8 w-auto `}>
             <form className="form" action={async (e) => {
                 const email = e.get("email")?.valueOf()
                 const password = e.get("password")?.valueOf()

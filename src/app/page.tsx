@@ -1,8 +1,6 @@
-import Link from "next/link";
 import LoginComponent from "@/component/LoginComponent";
 import Logo from "@/component/logoDisp";
 import Image from "next/image";
-import { FaFacebook } from "react-icons/fa";
 import hero from "@/public/heroLead.png"
 export default function Login() {
 
@@ -25,6 +23,7 @@ export default function Login() {
           </div>
           <div className="flex flex-col flex-1 items-center justify-center ">
             <LoginComponent />
+            
           </div>
         </div>
       </div>

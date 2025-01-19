@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import UserFormComponent from "@/component/UserFormComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
 import '@/app/customer/dashboard/cust.css'
 import hero from "@/public/heroLead.png";
 import Image from "next/image";
