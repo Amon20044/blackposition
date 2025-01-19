@@ -41,7 +41,7 @@ export default function LoginComponent() {
             }}>
                 <div className="">
                     <div className="text-center font-bold text-4xl">Find Your Audience</div>
-                    <div className="text-center opacity-40 font-bold opacity-20">The Next Step for Success</div>
+                    <div className="text-center opacity-40 font-bold">The Next Step for Success</div>
                 </div>
                 <div className="inputBox w-full">
                     <div className="box">
@@ -63,7 +63,7 @@ export default function LoginComponent() {
                                 className="input-field"
                                 type={showPassword ? "text" : "password"}
                                 name="password"
-                                placeholder="..........."
+                                placeholder="**********"
                             />
                             <FiEye
                                 className="icon"
