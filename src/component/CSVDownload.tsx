@@ -95,9 +95,9 @@ export default function CSVDownload({leads}: {
     console.log(csv)
     return (
         <>
-            <button className="download-button" onClick={() => downloadCsv(leads.data, 'user_data.csv')}>
+            <button className="download-button .buttonn" onClick={() => downloadCsv(leads.data, 'user_data.csv')}>
                 <FontAwesomeIcon icon={faDownload} className="icon-left ic" />
-                Download CSV
+                Download File
             </button>
         </>
     )

@@ -1,0 +1,101 @@
+/* Container styling */
+
+.card-container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.ty {
+    transform: translateY(-18px);
+}
+
+.backBut {
+    transform: translateY(-40px);
+    scale: 1.1;
+}
+
+/* Row styling */
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5px;
+}
+
+.card-label {
+    font-weight: 500;
+    color: #858585;
+}
+
+.card-value {
+    color: #333;
+}
+
+/* Link styling */
+.card-link {
+    text-decoration: none;
+    color: black;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+/* Action buttons */
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card-button {
+    min-width: 10.96213rem;
+    min-height: 2.54006rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background-color: #4286F5;
+    color: #fff;
+    border: none;
+    border-radius: 2.00156rem;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s ease;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.card-button:hover {
+    background-color: #3f80e1;
+}
+
+@media (max-width: 990px) {
+
+    .card-button {
+        margin-left: 4px;
+        margin-right: 4px;
+        gap: 0px;
+        min-width: 5.96213rem;
+        min-height: 2.04006rem;
+        font-size: small;
+        padding: 6px 8px;
+    }
+
+    .card-label {
+        font-size: small;
+    }
+
+    .card-value {
+        font-size: small;
+    }
+
+    .card-container {
+        padding: 16px;
+    }
+
+    .card-actions {
+        justify-content: flex-end;
+    }
+}

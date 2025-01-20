@@ -14,7 +14,7 @@ export default function LoginComponent() {
 
     const router = useRouter()
     return (
-        <div className={`bg-black shadow text-white rounded-xl p-8 w-auto `}>
+        <div className={``}>
             <form className="form" action={async (e) => {
                 const email = e.get("email")?.valueOf()
                 const password = e.get("password")?.valueOf()
@@ -40,8 +40,8 @@ export default function LoginComponent() {
                 }
             }}>
                 <div className="">
-                    <div className="text-center font-bold text-4xl">Find Your Audience</div>
-                    <div className="text-center opacity-40 font-bold">The Next Step for Success</div>
+                    <div className="text">Find Your Audience</div>
+                    <div className="text-down">The Next Step for Success</div>
                 </div>
                 <div className="inputBox w-full">
                     <div className="box">
@@ -76,15 +76,7 @@ export default function LoginComponent() {
                     </button>
                     {error && <p className="error-message">{error}</p>}
                     <hr className="my-12 h-0.5 border-t-0 bg-slate-400 dark:bg-white/10" />
-                    <Link
-                        href={`https://www.facebook.com/v21.0/dialog/oauth?client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&redirect_uri=${process.env.HOST}/api/auth&scope=leads_retrieval%20ads_read%20email`}
-                        className=" hover:bg-blue-700 transition Fb-button flex flex-row justify-center items-center"
-                    >
-                        <FaFacebook className="text-white text-xl" />
-                        <div>
-                            Login with Facebook
-                        </div>
-                    </Link>
+                    
                 </div>
 
             </form>

@@ -16,7 +16,6 @@ export default async function Page({params}: { params: { pageID: string } }) {
     const adName = (await getAdName(token, params.pageID)).name
 
     const clientData = await db.select().from(userTable).where(eq(userTable.formID, pageID))
-
     return (
         <div className="dashboard-container">
             {/* Main Content */}
@@ -55,7 +54,7 @@ export default async function Page({params}: { params: { pageID: string } }) {
                                 <CSVDownload leads={leads}/>
                             </div>
                         </div>
-                        <LeadDisplayComponent leads={leads} formID={pageID} admin={true}/>
+                        <LeadDisplayComponent leads={leads} formID={pageID} admin={true} adname=""/>
                     </div>
                 </div>
             </div>

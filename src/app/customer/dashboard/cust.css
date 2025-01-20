@@ -75,7 +75,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.5rem;
-    
     transform: translateY(-45px);
 }
 
@@ -106,8 +105,8 @@
 
 .ad-index {
     font-size: 0.875rem;
-    color: #666;
-    margin-bottom: 0.5rem;
+    color: #888888;
+    margin-bottom: 0rem;
 }
 
 .ad-name {
@@ -155,7 +154,7 @@
     font-size: 1rem;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1400px) {
   
 
     .ads-grid {
@@ -164,10 +163,10 @@
 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 990px) {
    
     .ads-grid {
         grid-template-columns: 1fr;
     }
-
+    
 }
