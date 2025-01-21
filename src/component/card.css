@@ -98,4 +98,8 @@
     .card-actions {
         justify-content: flex-end;
     }
+    .backBut{
+        scale: .8;
+        transform: translateY(-50px);
+    }
 }
