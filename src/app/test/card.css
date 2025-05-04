@@ -1,0 +1,60 @@
+/* Container styling */
+.card-container {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5px;
+}
+
+.card-label {
+    font-weight: 100;
+    color: #717171;
+}
+
+.card-value {
+    color: #333;
+}
+
+/* Link styling */
+.card-link {
+    text-decoration: none;
+    color: black;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+/* Action buttons */
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card-button {
+    min-width: 10.96213rem;
+    min-height: 2.54006rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background-color: #4286F5;
+    color: #fff;
+    border: none;
+    border-radius: 2.00156rem;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: #3f80e1;
+}

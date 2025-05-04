@@ -1,0 +1,161 @@
+/* General Container */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f7f9fc;
+    font-family: "Quicksand", 'Arial', sans-serif;
+}
+
+/* Sidebar - (Not included in the JSX, but here for potential use) */
+.sidebar {
+    width: 240px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar nav ul li {
+    margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+}
+
+.sidebar .logout-button {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #ff4c4c;
+    background: none;
+    border-top: 1px solid #ff4c4c;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Content Area */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Page List */
+.page-list {
+    margin-top: 20px;
+}
+
+.page-list-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #f8f9fa;
+}
+
+.page-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea;
+    align-items: center;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.page-item:hover {
+    background-color: #f1f3f5;
+}
+
+.page-item span {
+    padding: 5px;
+}
+
+.page-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.page-item a:hover {
+    color: #0056b3;
+}
+
+/* Button Style */
+.create-page-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.create-page-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .page-list-header,
+    .page-item {
+        grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .page-item {
+        font-size: 12px;
+    }
+}
