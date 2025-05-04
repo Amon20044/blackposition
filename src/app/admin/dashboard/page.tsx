@@ -7,7 +7,6 @@ import getAdAccounts from "@/functions/getAdAccounts";
 export default async function Dashboard() {
     const accessToken = await getTokenFromDB();
     const accounts = await getAdAccounts(accessToken);
-
     const pages = await getAds(accessToken, "act_435796140303126") as {
         data: {
             access_token: string,
