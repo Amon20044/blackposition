@@ -3,20 +3,20 @@ import {getTokenFromDB} from "@/functions/getTokenFromDB";
 import Link from "next/link";
 import './admin.css'
 import getAdAccounts from "@/functions/getAdAccounts";
-
+import { dummyToken } from "@/db";
 export default async function Dashboard() {
     const accessToken = await getTokenFromDB();
     const accounts = await getAdAccounts(accessToken);
-    const pages: {
+    const pages = await getAds(accessToken, "act_435796140303126") as {
         data: {
-            access_token: string;
-            name: string;
-            id: string;
-            category: string;
-            category_list: any[];
-            tasks: any[];
-        }[];
-    } = await getAds(accessToken, "act_435796140303126") ?? { data: [] };
+            access_token: string,
+            name: string,
+            id: string,
+            category: string,
+            category_list: any[],
+            tasks: any[]
+        }[]
+    };
 
     return (
         <div className="dashboard-container">

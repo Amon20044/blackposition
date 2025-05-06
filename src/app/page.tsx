@@ -4,8 +4,13 @@ import Image from "next/image";
 import hero from "@/public/heroLead.png"
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+// import { dummyToken } from "@/db";
 export default function Login() {
-
+  // const token : string = '467482453118649'; 
+  // console.log(token);
+  // dummyToken(token).then(() => {
+  //   console.log("Token inserted successfully");
+  // });
   return (
     <div className="relative w-screen h-screen bg-black">
       {/* Background Image */}
