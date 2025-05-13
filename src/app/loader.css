@@ -1,0 +1,165 @@
+.google-orbital-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(29, 29, 29, 0.9);
+  z-index: 9999;
+  border-radius: 20px;
+}
+
+.loader-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px dashed rgba(241, 241, 241, 0.489);
+}
+
+.ring-1 {
+  width: 120px;
+  height: 120px;
+  animation: rotate 8s linear infinite;
+}
+
+.ring-2 {
+  width: 90px;
+  height: 90px;
+  top: 15px;
+  left: 15px;
+  animation: rotate 6s linear infinite reverse;
+}
+
+.ring-3 {
+  width: 60px;
+  height: 60px;
+  top: 30px;
+  left: 30px;
+  animation: rotate 4s linear infinite;
+}
+
+.google-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Google Colors */
+.dot-red {
+  background-color: #EA4335;
+  top: 0;
+  left: 50%;
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+.dot-blue {
+  background-color: #4285F4;
+  top: 50%;
+  left: 0;
+  animation: pulse-blue 2s ease-in-out infinite;
+}
+
+.dot-yellow {
+  background-color: #FBBC05;
+  top: 100%;
+  left: 50%;
+  animation: pulse-yellow 2s ease-in-out infinite;
+}
+
+.dot-green {
+  background-color: #34A853;
+  top: 50%;
+  left: 100%;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+.center-element {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(31, 31, 31);
+  border-radius: 50%;
+  top: 45px;
+  left: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.loader-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -40px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #5f6368;
+  letter-spacing: 1px;
+}
+
+.loading-dots span {
+  display: inline-block;
+  animation: loadingDots 1.5s infinite;
+  opacity: 0;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+/* Animations */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes pulse-red {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes pulse-blue {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); 
+        animation-delay: 0.5s; }
+}
+
+@keyframes pulse-yellow {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); 
+        animation-delay: 1s; }
+}
+
+@keyframes pulse-green {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); 
+        animation-delay: 1.5s; }
+}
+
+@keyframes loadingDots {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}

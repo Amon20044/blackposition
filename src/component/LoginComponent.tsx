@@ -8,47 +8,65 @@ import "./login.css";
 
 export default function LoginComponent() {
     const [error, setError] = useState("");
-    const [showPassword, setShowPassword] = useState(false); // State for password visibility
-    const [isLoading, setIsLoading] = useState(false); // State for loader visibility
+    const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
         setIsLoading(true); // Show loader when login starts
 
-        const form = e.currentTarget; // Access the form
+        const form = e.currentTarget;
         const email = form.email.value;
         const password = form.password.value;
 
         if (!email || !password) {
             setError("Email and password are required");
-            setIsLoading(false); // Hide loader on error
+            setIsLoading(false);
             return;
         }
 
         if (typeof email !== "string" || typeof password !== "string") {
             setError("Email and password are required");
-            setIsLoading(false); // Hide loader on error
+            setIsLoading(false);
             return;
         }
 
-        const user = await loginUser({ email, password });
+        try {
+            const user = await loginUser({ email, password });
 
-        if (user.error) {
-            setError(user.error);
-            setIsLoading(false); // Hide loader on error
-        } else {
-            router.push("/customer/dashboard");
-            setError("");
+            if (user.error) {
+                setError(user.error);
+                setIsLoading(false);
+            } else {
+                router.push("/customer/dashboard");
+                setError("");
+                // We don't need to hide the loader here as we're navigating away
+            }
+        } catch (err) {
+            setError("An unexpected error occurred");
+            setIsLoading(false);
         }
     };
 
     return (
         <div className="relative">
             {isLoading && (
-                <div className="loader-overlay">
-                    <div className="loader"></div>
+                <div className="google-orbital-loader">
+                    <div className="loader-container">
+                        <div className="orbital-ring ring-1"></div>
+                        <div className="orbital-ring ring-2"></div>
+                        <div className="orbital-ring ring-3"></div>
+                        <div className="google-dot dot-red"></div>
+                        <div className="google-dot dot-blue"></div>
+                        <div className="google-dot dot-yellow"></div>
+                        <div className="google-dot dot-green"></div>
+                        <div className="center-element"></div>
+                        <div className="loader-text">
+                            Loading<span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+                        </div>
+                    </div>
                 </div>
             )}
 

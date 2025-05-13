@@ -4,8 +4,8 @@ import Image from "next/image";
 import hero from "@/public/heroLead.png"
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+import './loader.css'
 export default function Login() {
-
   return (
     <div className="relative w-screen h-screen bg-black">
       {/* Background Image */}

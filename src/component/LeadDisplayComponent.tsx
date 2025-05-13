@@ -133,7 +133,7 @@ export default function LeadDisplayComponent({
                             </div>
                         ))
                     ) : (
-                        <div className="text-white">No leads available</div>
+                        <div className="text-bl">No leads available</div>
                     )}
                 </div>
             </div>
