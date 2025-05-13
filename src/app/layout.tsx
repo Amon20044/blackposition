@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { Montserrat } from 'next/font/google'
 import "./globals.css";
 import { PostHogProvider } from "../component/PostHogProvider";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Montserrat({
   subsets: ['latin'],
   display: 'swap',
@@ -24,6 +24,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <PostHogProvider>
+        <SpeedInsights/>
           <Analytics/>
           {children}
         </PostHogProvider>

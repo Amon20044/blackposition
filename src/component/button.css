@@ -1,11 +1,16 @@
-.buttonn{
+.buttonn {
     background-color: #309B4C;
     width: auto;
     padding: 10px 20px;
     color: white;
     border-radius: 8px;
-    position: fixed;
+    position: fixed; /* Use only one positioning method */
+    z-index: 9999;   /* Raise this value to ensure it's on top */
+    bottom: 20px;       /* Optional: Add positioning */
+    left: 20px;     /* Optional: Add positioning */
+    font-size: 12px; 
 }
+
 .ic{
     margin-right: 8px;
     translate: 0 -120px;

@@ -39,25 +39,6 @@ h1.leads-header {
     margin-top: 40px;
 }
 
-/* Button for adding team member (for admins) */
-.add-team-button {
-    background-color: #28a745;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background-color 0.3s;
-}
-
-.add-team-button:hover {
-    background-color: #218838;
-}
 
 .add-team-button .icon-left {
     font-size: 18px;

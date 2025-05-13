@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { pageID: string } }) {
             <div className="form-content">
                 
                 {/* Actions */}
-                <div className="absolute z-10 bottom-4 left-0 flex items-center gap-4 p-4 text-sm">
+                <div className="">
                     <CSVDownload leads={{ data: leads, name: adName }} />
                 </div>
 

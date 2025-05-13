@@ -12,11 +12,11 @@
 .add-team-button {
     background-color: #007bff;
     color: white;
-    font-size: medium;
-    padding: 13px 15px;
+    font-size: 14px;
+    padding:10px 12px;
     translate: 0 -40px;
     border-radius: 999px;
-    border-width: 6px;
+    border-width: 2px;
     border-style: solid;
     border-color: white;
     font-weight: bold;
