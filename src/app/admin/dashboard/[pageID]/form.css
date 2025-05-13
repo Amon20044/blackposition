@@ -4,6 +4,43 @@
     height: auto;
 }
 
+.client-info{
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    right: 12px;
+    padding: 8px 16px;
+    margin-top: 32px;
+    display: flex;
+    background-color: #ffffff;
+    flex-direction: column; 
+    border-radius: 12px;
+    gap: 4px;
+}
+.client-info p{
+    color: #333;
+    font-size: small;
+}
+.deleteButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 2px 12px;
+    font-size: small;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+ .deleteButton:hover {
+    background-color: #d43f3f;
+ }
 /* Sidebar */
 .sidebar {
     width: 240px;
@@ -78,23 +115,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Back Button */
-.back-button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.back-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
 
 /* CSV Download Button Wrapper */
 .actions {
@@ -143,7 +163,6 @@
 
 /* CSV Download Button */
 .download-button {
-    background-color: #1a73e8;
     color: white;
     border: none;
     padding: 10px 16px;

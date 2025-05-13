@@ -1,0 +1,19 @@
+.buttonn{
+    background-color: #309B4C;
+    width: auto;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 8px;
+    position: fixed;
+}
+.ic{
+    margin-right: 8px;
+    translate: 0 -120px;
+}
+
+.mx{
+    margin-right: 8px;
+}
+.icon-left{
+    margin-right: 8px;
+}

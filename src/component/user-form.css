@@ -38,6 +38,9 @@
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
 
+.add-member-field{
+    color: #1e1e1e;
+}
 .error-message {
     color: red;
     margin-bottom: 10px;
@@ -59,4 +62,8 @@
 .submit-btn:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+}
+
+.add-member-input{
+    color: #1e1e1e;
 }

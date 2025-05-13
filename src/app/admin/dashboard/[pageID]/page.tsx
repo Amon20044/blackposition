@@ -1,4 +1,4 @@
-import getForms from "@/functions/getForms";
+import {getForms} from "@/functions/getForms";
 import { getTokenFromDB } from "@/functions/getTokenFromDB";
 import getAdName from "@/functions/getAdName";
 import { db } from "@/db";
@@ -7,9 +7,15 @@ import { eq } from "drizzle-orm";
 
 import CSVDownload from "@/component/CSVDownload";
 import LeadDisplayComponent from "@/component/LeadDisplayComponent";
-import EmailDelete from "@/component/EmailDelete";
+
 
 import "./form.css";
+
+export interface clientData {
+    id: string;
+    email: string;
+    formID: string;
+}
 
 export default async function Page({ params }: { params: { pageID: string } }) {
     const { pageID } = params;
@@ -17,23 +23,15 @@ export default async function Page({ params }: { params: { pageID: string } }) {
     const token = await getTokenFromDB();
     const leads = await getForms(token, pageID);
     const adName = (await getAdName(token, pageID)).name;
-    const clientData = await db.select().from(userTable).where(eq(userTable.formID, pageID));
-
+    const clientData : clientData[] = await db.select().from(userTable).where(eq(userTable.formID, pageID));
+    console.log(clientData[0]);
     return (
         <div className="dashboard-container">
             <div className="form-content">
-                {/* Client Info */}
-                {clientData.length > 0 && (
-                    <div className="client-info">
-                        <h2>Client Email</h2>
-                        <p>{clientData[0].email}</p>
-                        <EmailDelete formID={pageID} />
-                    </div>
-                )}
-
+                
                 {/* Actions */}
-                <div className="absolute z-10 bottom-0 right-0 flex items-center gap-4 p-4">
-                    <CSVDownload leads={leads} />
+                <div className="absolute z-10 bottom-4 left-0 flex items-center gap-4 p-4 text-sm">
+                    <CSVDownload leads={{ data: leads, name: adName }} />
                 </div>
 
                 {/* Lead Display */}
@@ -42,6 +40,7 @@ export default async function Page({ params }: { params: { pageID: string } }) {
                     formID={pageID}
                     admin={true}
                     adname={adName}
+                    clientData={clientData[0]}
                 />
             </div>
         </div>

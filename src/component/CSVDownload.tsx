@@ -15,8 +15,15 @@ interface DataItem {
     field_data: FieldData[];
 }
 
-function downloadCsv(data: DataItem[], filename: string = 'export.csv') {
-    const csvContent = jsonToCsv(data);
+interface LeadsWrapper {
+    data: {
+        data: DataItem[];
+    };
+    name: string;
+}
+
+function downloadCsv(dataWrapper: LeadsWrapper, filename: string) {
+    const csvContent = jsonToCsv(dataWrapper);
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);
@@ -30,10 +37,11 @@ function downloadCsv(data: DataItem[], filename: string = 'export.csv') {
     URL.revokeObjectURL(url);
 }
 
-function jsonToCsv(data: DataItem[]) {
+function jsonToCsv(data: LeadsWrapper) {
     const headers = ['created_time', 'id', ...(() => {
         const uniqueHeaders = new Set<string>();
-        data.forEach(item =>
+        console.log('data', data.data.data);
+        data.data.data.forEach(item =>
             item.field_data.forEach(field => uniqueHeaders.add(field.name))
         );
         return Array.from(uniqueHeaders);
@@ -41,7 +49,7 @@ function jsonToCsv(data: DataItem[]) {
 
     const csvRows = [
         headers.join(','),
-        ...data.map(item => {
+        ...data.data.data.map(item => {
             const fieldMap: Record<string, string> = Object.fromEntries(
                 item.field_data.map(field => [field.name, field.values[0]])
             );
@@ -74,12 +82,11 @@ function jsonToCsv(data: DataItem[]) {
     return csvRows.join('\n');
 }
 
-export default function CSVDownload({ leads }: {
-    leads: { data: DataItem[] }
-}) {
+export default function CSVDownload({ leads }: { leads: LeadsWrapper }) {
+    console.log('name: ' + leads.name);
     return (
-        <button className="download-button buttonn" onClick={() => downloadCsv(leads.data, 'user_data.csv')}>
-            <FontAwesomeIcon icon={faDownload} className="icon-left ic" />
+        <button className="download-button buttonn" onClick={() => downloadCsv(leads, `${leads.name}.csv`)}>
+            <FontAwesomeIcon icon={faDownload} className="icon-left" />
             Download File
         </button>
     );

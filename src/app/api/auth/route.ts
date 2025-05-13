@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import {exchangeCode} from "@/functions/exchangeCode";
-import getLongLivedAccessToken from "@/functions/getLongLivedAccessToken";
+import {getLongLivedAccessToken} from "@/functions/getLongLivedAccessToken";
 import {getMe} from "@/functions/getMe";
 import {db} from "@/db";
 import {configTable} from "@/db/schema";

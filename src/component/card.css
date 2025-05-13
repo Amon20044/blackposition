@@ -12,10 +12,14 @@
 .add-team-button {
     background-color: #007bff;
     color: white;
-    padding: 10px 16px;
-    border-radius: 6px;
+    font-size: medium;
+    padding: 13px 15px;
+    translate: 0 -40px;
+    border-radius: 999px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: white;
     font-weight: bold;
-    border: none;
     cursor: pointer;
     transition: background-color 0.3s;
 }

@@ -1,81 +1,123 @@
-"use client"
+"use client";
 
-import { createUser } from "@/functions/createUser";
 import { useState } from "react";
+import { createUser } from "@/functions/createUser";
+import deleteUser from "@/functions/deleteUser";
+import './addMember.css';
 
-export default function UserFormComponent({ formID }: { formID: string }) {
-    const [error, setError] = useState<string>(""); // Ensure error is typed correctly
-    const [email, setEmail] = useState<string>(""); // Track email input
-    const [password, setPassword] = useState<string>(""); // Track password input
-    const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Track form submission state
+interface ClientData {
+  email: string;
+  formID: string;
+}
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault(); // Prevent the default form submission
+interface UserFormComponentProps {
+  formID: string;
+  clientData?: ClientData | null;
+}
 
-        // Validate email and password
-        if (!email || !password) {
-            setError("Email and password are required");
-            return;
-        }
+export default function UserFormComponent({ formID, clientData }: UserFormComponentProps) {
+  const [email, setEmail] = useState<string>(clientData?.email || "");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
 
-        if (typeof email !== "string" || typeof password !== "string") {
-            setError("Email and password must be strings");
-            return;
-        }
+  const handleMail = () => {
+    if (clientData?.email) {
+      window.location.href = `mailto:${clientData.email}`;
+    }
+  };
 
-        setIsSubmitting(true); // Start submitting
+  const handleDelete = async () => {
+    if (!clientData) return;
+    try {
+      await deleteUser(clientData.formID);
+      alert("User deleted successfully.");
+      window.location.reload(); // Refresh to reflect changes
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete user.");
+    }
+  };
 
-        try {
-            const user = await createUser({ email, password, formID });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
 
-            if (user.error) {
-                setError(user.error); // Display error if any
-            } else {
-                setError(""); // Clear any previous error
-            }
-        } catch (err) {
-            setError("An unexpected error occurred. Please try again.");
-        } finally {
-            setIsSubmitting(false); // Reset submitting state
-        }
-    };
+    if (!email || !password) {
+      setError("Email and password are required");
+      return;
+    }
 
-    return (
+    try {
+      const result = await createUser({ email, password, formID });
+      if (result.error) {
+        setError(result.error);
+      } else {
+        setSuccess("User access created successfully!");
+        setEmail("");
+        setPassword("");
+        window.location.reload(); // Refresh to show the new clientData
+      }
+    } catch {
+      setError("Unexpected error. Please try again.");
+    }
+  };
+
+  return (
+    <div className="add-member-form">
+      {clientData ? (
         <>
-            <h1>Form Access Credentials</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        className="text-black"
-                        type="email"
-                        name="email"
-                        value={email} // Bind the email state
-                        onChange={(e) => setEmail(e.target.value)} // Update email state on change
-                        required
-                    />
-                </div>
+          <h1 className="add-member-title">Client Info</h1>
+          <div className="add-member-field-display">
+            <div className="add-member-field-name">Email</div>
+            <div className="add-member-field-value">{clientData.email}</div>
+          </div>
 
-                <div>
-                    <label>Password</label>
-                    <input
-                        className="text-black"
-                        type="password"
-                        name="password"
-                        value={password} // Bind the password state
-                        onChange={(e) => setPassword(e.target.value)} // Update password state on change
-                        required
-                    />
-                </div>
-
-                {/* Display error if there is any */}
-                {error && <div className="error-message">{error}</div>}
-
-                {/* Submit button */}
-                <button type="submit" disabled={isSubmitting}> {/* Disable button while submitting */}
-                    {isSubmitting ? "Submitting..." : "Submit"}
-                </button>
-            </form>
+          <div className="add-member-action-container">
+            <button className="add-member-action-button" onClick={handleMail}>
+              Mail
+            </button>
+            <button className="add-member-action-button-delete" onClick={handleDelete}>
+              Delete
+            </button>
+          </div>
         </>
-    );
+      ) : (
+        <>
+          <h1 className="add-member-title">Create Access</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="add-member-field">
+              <label className="add-member-label">Email</label>
+              <input
+                className="add-member-input text-black"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="add-member-field">
+              <label className="add-member-label">Password</label>
+              <input
+                className="add-member-input text-black"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            {error && <div className="add-member-error">{error}</div>}
+            {success && <div className="add-member-success">{success}</div>}
+
+            <button className="add-member-button" type="submit">
+              Submit
+            </button>
+          </form>
+        </>
+      )}
+    </div>
+  );
 }

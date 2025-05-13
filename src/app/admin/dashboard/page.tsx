@@ -1,5 +1,6 @@
-import { useState } from "react";
-import getAds from "@/functions/getAds";
+
+import { useState, useEffect } from "react";
+import {getAds} from "@/functions/getAds";
 import { getTokenFromDB } from "@/functions/getTokenFromDB";
 import hero from "@/public/blackPosition.svg";
 
@@ -24,7 +25,7 @@ export default async function Dashboard() {
             tasks: any[]
         }[]
     };
-    
+ 
     return (
         <div className="dashboard-container">
             {/* Main Content */}

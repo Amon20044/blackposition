@@ -11,21 +11,21 @@ import hero from "@/public/heroLead.png";
 import logo from "@/public/blackPosition.svg";
 import "./card.css";
 import "@/app/customer/dashboard/cust.css";
-
+import { clientData } from "@/app/admin/dashboard/[pageID]/page";
 export default function LeadDisplayComponent({
     leads,
     formID,
     adname,
     admin,
+    clientData
 }: {
     leads: { data: any[] } | undefined;
     formID: string;
     adname: string;
     admin?: boolean;
+    clientData?: clientData;
 }) {
     const [showModal, setShowModal] = useState(false);
-    const router = useRouter();
-
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
 
@@ -51,7 +51,9 @@ export default function LeadDisplayComponent({
             {/* Content Section */}
             <div className="content-section">
                 <div className="ty header-actions">
-                    <button onClick={() => router.back()} className="backBut" aria-label="Go back">
+                    <button onClick={() => {
+                        window.location.href =  '/admin/dashboard';
+                    }} className="backBut" aria-label="Go back">
                         <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
                             <rect x="0.019" y="0.391" width="50.081" height="50.081" rx="25.04" fill="#1D1E1E" />
                             <rect x="3.356" y="0.391" width="43.408" height="43.408" rx="21.704" fill="white" />
@@ -66,8 +68,7 @@ export default function LeadDisplayComponent({
 
                     {admin && (
                         <button onClick={handleOpenModal} className="add-team-button absolute right-0" aria-label="Add Team Member">
-                            <FontAwesomeIcon icon={faUserPlus} className="icon-left ic" />
-                            Add Team Member
+                            <FontAwesomeIcon icon={faUserPlus}  />
                         </button>
                     )}
                 </div>
@@ -76,8 +77,8 @@ export default function LeadDisplayComponent({
                 {showModal && (
                     <div className="modal-backdrop" role="dialog" aria-modal="true">
                         <div className="modal-content">
-                            <button onClick={handleCloseModal} className="close-button" aria-label="Close Modal">×</button>
-                            <UserFormComponent formID={formID} />
+                            <button onClick={handleCloseModal} className="close-button" aria-label="Close Modal">X</button>
+                            <UserFormComponent formID={formID} clientData={clientData}/>
                         </div>
                     </div>
                 )}
