@@ -30,9 +30,8 @@ export default async function Page({ params }: { params: { pageID: string } }) {
             <div className="form-content">
                 
                 {/* Actions */}
-                <div className="">
                     <CSVDownload leads={{ data: leads, name: adName }} />
-                </div>
+                
 
                 {/* Lead Display */}
                 <LeadDisplayComponent
