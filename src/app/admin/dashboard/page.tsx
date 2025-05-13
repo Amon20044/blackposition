@@ -1,13 +1,19 @@
+import { useState } from "react";
 import getAds from "@/functions/getAds";
-import {getTokenFromDB} from "@/functions/getTokenFromDB";
-import Link from "next/link";
-import './admin.css'
+import { getTokenFromDB } from "@/functions/getTokenFromDB";
+import hero from "@/public/blackPosition.svg";
+
+// import Link from "next/link";
+import Image from "next/image";
+import './admin.css';
 import getAdAccounts from "@/functions/getAdAccounts";
+// import { Search } from "lucide-react";
+import ClientSideSearch from "@/component/ClientSideSearch";
 
 export default async function Dashboard() {
     const accessToken = await getTokenFromDB();
     const accounts = await getAdAccounts(accessToken);
-
+    
     const pages = await getAds(accessToken, "act_435796140303126") as {
         data: {
             access_token: string,
@@ -18,37 +24,17 @@ export default async function Dashboard() {
             tasks: any[]
         }[]
     };
-
+    
     return (
         <div className="dashboard-container">
             {/* Main Content */}
             <main className="content">
-                <div className="">
-                    <h1 className='font-bold text-center text-xl '>Pages</h1>
-                </div>
-
-                <div className="page-list">
-                    <div className="page-list-header">
-                        <span>Title</span>
-                        <span>Client</span>
-                    </div>
-                    {
-                        pages.data && pages.data.length > 0 ? (
-                            pages.data.map((page) => (
-                                <div key={page.id} className="page-item">
-                                    <Link href={`${process.env.HOST}/admin/dashboard/${page.id}`}>
-                                        <span>{page.name}</span>
-                                    </Link>
-                                    <span>-</span>
-                                </div>
-                            ))
-                        ) : (
-                            <div key={"err"} className="page-item">
-                                <span>{"No Pages associated to your account!"}</span>
-                                <span>-</span>
-                            </div>
-                        )
-                    }
+                <div className="dashboard-header">
+                    <div className="font-bold text-2xl mb-6">
+                    <Image src={hero} alt="Hero Background" className="hero-image" />
+                    </div>                    
+                    {/* Search Component */}
+                    <ClientSideSearch pages={pages.data || []} />
                 </div>
             </main>
         </div>

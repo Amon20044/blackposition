@@ -1,62 +1,48 @@
 import getForms from "@/functions/getForms";
-import {getTokenFromDB} from "@/functions/getTokenFromDB";
-import "./form.css";
+import { getTokenFromDB } from "@/functions/getTokenFromDB";
+import getAdName from "@/functions/getAdName";
+import { db } from "@/db";
+import { userTable } from "@/db/schema";
+import { eq } from "drizzle-orm";
+
 import CSVDownload from "@/component/CSVDownload";
 import LeadDisplayComponent from "@/component/LeadDisplayComponent";
-import getAdName from "@/functions/getAdName";
-import {db} from "@/db";
-import {userTable} from "@/db/schema";
-import {eq} from "drizzle-orm";
 import EmailDelete from "@/component/EmailDelete";
 
-export default async function Page({params}: { params: { pageID: string } }) {
-    const {pageID} = params; // Extract pageID from params
-    const token = await getTokenFromDB();
-    const leads = await getForms(token, params.pageID);
-    const adName = (await getAdName(token, params.pageID)).name
+import "./form.css";
 
-    const clientData = await db.select().from(userTable).where(eq(userTable.formID, pageID))
+export default async function Page({ params }: { params: { pageID: string } }) {
+    const { pageID } = params;
+
+    const token = await getTokenFromDB();
+    const leads = await getForms(token, pageID);
+    const adName = (await getAdName(token, pageID)).name;
+    const clientData = await db.select().from(userTable).where(eq(userTable.formID, pageID));
+
     return (
         <div className="dashboard-container">
-            {/* Main Content */}
-            <div className="content">
-                <header className="header-row">
-                    {/* Routing Back Button */}
-                    <a href="javascript:history.back()" className="back-button">
-                        ← Back
-                    </a>
-                    <h1 className="font-bold text-xl">Forms</h1>
-                    <h1 className="font-bold text-xl"></h1>
-                </header>
+            <div className="form-content">
+                {/* Client Info */}
+                {clientData.length > 0 && (
+                    <div className="client-info">
+                        <h2>Client Email</h2>
+                        <p>{clientData[0].email}</p>
+                        <EmailDelete formID={pageID} />
+                    </div>
+                )}
 
-                <div className="page-list">
-                    <div>
-                        {
-                            clientData.length > 0 ?
-                                (
-                                    <>
-                                        <h1>Client Email</h1>
-                                        <h1>{clientData[0].email}</h1>
-                                    </>
-                                ) : null
-                        }
-
-                        <EmailDelete formID={params.pageID}/>
-                    </div>
-                    <div className="page-list-header">
-                        <span>Title</span>
-                        <span>Locale</span>
-                        <span>Status</span>
-                    </div>
-                    <div className="">
-                        <div className="CSVbutton">
-                            <div className="bu">
-                                <CSVDownload leads={leads}/>
-                            </div>
-                        </div>
-                        <LeadDisplayComponent leads={leads} formID={pageID} admin={true} adname=""/>
-                    </div>
+                {/* Actions */}
+                <div className="absolute z-10 bottom-0 right-0 flex items-center gap-4 p-4">
+                    <CSVDownload leads={leads} />
                 </div>
+
+                {/* Lead Display */}
+                <LeadDisplayComponent
+                    leads={leads}
+                    formID={pageID}
+                    admin={true}
+                    adname={adName}
+                />
             </div>
         </div>
     );
